@@ -23,17 +23,22 @@ typedef struct s_BaseCar {
     AccelerationVector speed;
     RotationVector rotation;
     PositionVector position;
-    struct BaseCar (*Constructor)();
-    void* (*Destroy)(struct BaseCar *this);
-    void* (*UpdateSpeed)(struct BaseCar *this, AccelerationVector speedInput);
-    void* (*UpdateRotation)(struct BaseCar *this, RotationVector rotationInput);
-    void* (*UpdatePosition)(struct BaseCar *this);
+
+    void (*UpdateSpeed)(struct s_BaseCar* this, AccelerationVector speedInput);
+
+    void (*UpdateRotation)(struct s_BaseCar* this, RotationVector rotationInput);
+
+    void (*UpdatePosition)(struct s_BaseCar* this);
 } BaseCar;
 
-BaseCar Constructor();
-void Destroy(BaseCar *this);
-void UpdateSpeed(BaseCar *this, AccelerationVector speedInput);
-void UpdateRotation(BaseCar *this, RotationVector rotationInput);
-void UpdatePosition(BaseCar *this);
+BaseCar* BaseCar_Constructor();
+
+void BaseCar_Destroy(struct s_BaseCar* this);
+
+void UpdateSpeed(struct s_BaseCar* this, AccelerationVector speedInput);
+
+void UpdateRotation(struct s_BaseCar* this, RotationVector rotationInput);
+
+void UpdatePosition(struct s_BaseCar* this);
 
 #endif //BASECAR_H
