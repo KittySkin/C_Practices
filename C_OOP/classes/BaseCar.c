@@ -4,17 +4,13 @@
 BaseCar* BaseCar_Constructor() {
     BaseCar* newCarInstance = malloc(sizeof(BaseCar));
 
-    newCarInstance->speed.xAxis = 0;
-    newCarInstance->speed.yAxis = 0;
-    newCarInstance->speed.zAxis = 0;
+    AccelerationVector const speed = {0, 0, 0};
+    RotationVector const rotation = {0, 0, 0};
+    PositionVector const position = {0, 0, 0};
 
-    newCarInstance->rotation.xAxis = 0;
-    newCarInstance->rotation.yAxis = 0;
-    newCarInstance->rotation.zAxis = 0;
-
-    newCarInstance->position.xAxis = 0;
-    newCarInstance->position.yAxis = 0;
-    newCarInstance->position.zAxis = 0;
+    newCarInstance->speed = speed;
+    newCarInstance->rotation = rotation;
+    newCarInstance->position = position;
 
     newCarInstance->UpdateSpeed = UpdateSpeed;
     newCarInstance->UpdateRotation = UpdateRotation;
@@ -27,13 +23,13 @@ void BaseCar_Destroy(struct s_BaseCar* this) {
     free(this);
 }
 
-void UpdateSpeed(struct s_BaseCar* this, AccelerationVector speedInput) {
+void UpdateSpeed(struct s_BaseCar* this, const AccelerationVector speedInput) {
     this->speed.xAxis += speedInput.xAxis;
     this->speed.yAxis += speedInput.yAxis;
     this->speed.zAxis += speedInput.zAxis;
 }
 
-void UpdateRotation(struct s_BaseCar* this, RotationVector rotationInput) {
+void UpdateRotation(struct s_BaseCar* this, const RotationVector rotationInput) {
     this->rotation.xAxis += rotationInput.xAxis;
     this->rotation.yAxis += rotationInput.yAxis;
     this->rotation.zAxis += rotationInput.zAxis;
